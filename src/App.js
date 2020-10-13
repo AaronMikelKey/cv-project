@@ -14,6 +14,7 @@ class App extends Component {
       address: "",
       phone: "",
       email: "",
+      genIsSaved: false,
       education: [
         {
           school: "",
@@ -21,6 +22,7 @@ class App extends Component {
           date: ""
         },
       ],
+      eduIsSaved: false,
       experience: [
         {
           company: "",
@@ -29,6 +31,7 @@ class App extends Component {
           date: ""
         }
       ],
+      expIsSaved: false,
     };
     this.handleName = this.handleName.bind(this);
   }

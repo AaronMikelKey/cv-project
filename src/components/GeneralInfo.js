@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faAddressCard, faEnvelope, faCheck, faPhone } from '@fortawesome/free-solid-svg-icons';
+import SaveButton from './SaveButton';
 
 library.add(faUser, faAddressCard, faPhone, faEnvelope, faCheck)
 
@@ -11,8 +12,50 @@ class GenInfo extends React.Component {
         this.handleName = this.handleName.bind(this);
         this.handleAddress = this.handleAddress.bind(this);
         this.handlePhone = this.handlePhone.bind(this);
-        this.handleEmail= = this.handleEmail.bind(this);
+        this.handleEmail = this.handleEmail.bind(this);
+
     };
+
+    
+
+    handleName = (e) => {
+        this.setState({
+          name: e.target.name,
+        });
+    };
+
+    handleAddress = (e) => {
+        this.setState({
+          address: e.target.address,
+        });
+    };
+
+    handlePhone = (e) => {
+        this.setState({
+          phone: e.target.phone,
+        });
+    };
+
+    handleEmail = (e) => {
+        this.setState({
+          email: e.target.email,
+        });
+    };
+
+    saveGen = (e) => {
+        this.setState({
+            genIsSaved: true,
+        });
+    };
+
+    editGen = (e) => {
+        this.setState({
+            genIsSaved: false,
+        });
+    };
+
+    
+
     render() {
         return (
             <div>
@@ -31,8 +74,8 @@ class GenInfo extends React.Component {
                 <div className="form-group">
                     <label htmlFor="emailInput"><FontAwesomeIcon icon={faEnvelope} className="mr-1" />Email</label>
                     <input type="text" id="emailInput" className="form-control form-control-sm" />
+                    <SaveButton />
                 </div>
-                <button className="btn btn-success btn-block w-auto mx-auto"><FontAwesomeIcon icon={faCheck} className="mr-1" />Save General Info</button>
             </div>
         );
     }
