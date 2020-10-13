@@ -7,7 +7,7 @@ library.add(faPen, faCheck)
 
 function SaveButton(props) {
     return (
-        <button onClick={props.onClick}>
+        <button className="btn btn-success btn-block w-auto mt-3 mx-auto" onClick={props.onClick}>
             <FontAwesomeIcon icon={faCheck} className="mr-1" />Save General Info
         </button>
     );
@@ -15,7 +15,7 @@ function SaveButton(props) {
 
 function EditButton(props) {
     return (
-        <button onClick={props.onClick}>
+        <button className="btn btn-info btn-block w-auto mt-3 mx-auto" onClick={props.onClick}>
             <FontAwesomeIcon icon={faPen} className="mr-1" />Edit General Info
         </button>
     );
