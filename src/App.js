@@ -38,6 +38,9 @@ class App extends Component {
     this.handleSaveGen = this.handleSaveGen.bind(this);
     this.handleEditGen = this.handleEditGen.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleEduChange = this.handleEduChange.bind(this);
+    this.handleSaveEdu = this.handleSaveEdu.bind(this);
+    this.handleEditEdu = this.handleEditEdu.bind(this);
   }
 
   handleSaveGen() {
@@ -46,14 +49,6 @@ class App extends Component {
 
   handleEditGen() {
     this.setState({ genIsSaved: false });
-  }
-
-  handleSaveEdu() {
-    this.setState({ eduIsSaved: true });
-  }
-
-  handleEditEdu() {
-    this.setState({ eduIsSaved: false });
   }
 
   handleChange = (e) => {
@@ -74,6 +69,22 @@ class App extends Component {
     this.setState({
       education: [...this.state.education, newEdu]
     });
+  };
+  handleSaveEdu = (e) => {
+    e.preventDefault();
+    if (e.target.form.elements.date.value !== "") {
+      this.handleEduChange(e);
+    }
+    this.setState({
+      eduIsSaved: true
+    });
+  };
+
+  handleEditEdu(e) {
+    e.preventDefault();
+    this.setState({ 
+      eduIsSaved: false
+     });
   };
 
 
