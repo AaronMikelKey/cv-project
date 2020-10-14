@@ -49,29 +49,30 @@ const GenInfo = props => {
                     <label htmlFor="nameInput"><FontAwesomeIcon icon={faUser} className="mr-1" />Name</label>
                     <input 
                         type="text" 
+                        name="name" 
                         id="nameInput" 
                         className="form-control form-control-sm" 
-                        onChange={props.handleName}
+                        onChange={props.handleChange}
                         value={props.name}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="addressInput"><FontAwesomeIcon icon={faAddressCard} className="mr-1" />Address</label>
-                    <input type="text" id="addressInput" className="form-control form-control-sm"
-                        onChange={props.handleAddress}
+                    <input type="text" name="address" id="addressInput" className="form-control form-control-sm"
+                        onChange={props.handleChange}
                         value={props.address}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="phoneInput"><FontAwesomeIcon icon={faPhone} className="mr-1" />Phone Number</label>
-                    <input type="text" id="phoneInput" className="form-control form-control-sm"
-                        onChange={props.handlePhone}
+                    <input type="text" name="phone" id="phoneInput" className="form-control form-control-sm"
+                        onChange={props.handleChange}
                         value={props.phone} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="emailInput"><FontAwesomeIcon icon={faEnvelope} className="mr-1" />Email</label>
-                    <input type="text" id="emailInput" className="form-control form-control-sm"
-                        onChange={props.handleEmail}
+                    <input type="text" name="email" id="emailInput" className="form-control form-control-sm"
+                        onChange={props.handleChange}
                         value={props.email} />
                     {button}
                 </div>

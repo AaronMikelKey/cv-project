@@ -35,10 +35,7 @@ class App extends Component {
     };
     this.handleSaveGen = this.handleSaveGen.bind(this);
     this.handleEditGen = this.handleEditGen.bind(this);
-    this.handleName = this.handleName.bind(this);
-    this.handleAddress = this.handleAddress.bind(this);
-    this.handlePhone = this.handlePhone.bind(this);
-    this.handleEmail = this.handleEmail.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSaveGen() {
@@ -49,27 +46,10 @@ class App extends Component {
     this.setState({ genIsSaved: false });
   }
 
-  handleName = (e) => {
+  handleChange = (e) => {
     this.setState({
-      name: e.target.value,
-    });
-  };
-
-  handleAddress = (e) => {
-    this.setState({
-      address: e.target.value,
-    });
-  };
-
-  handlePhone = (e) => {
-    this.setState({
-      phone: e.target.value,
-    });
-  };
-
-  handleEmail = (e) => {
-    this.setState({
-      email: e.target.value,
+      ...this.state,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -83,10 +63,7 @@ class App extends Component {
               {...this.state}
               handleSaveGen={this.handleSaveGen}
               handleEditGen={this.handleEditGen}
-              handleName={this.handleName}
-              handleAddress={this.handleAddress}
-              handlePhone={this.handlePhone}
-              handleEmail={this.handleEmail}
+              handleChange={this.handleChange}
             />
           </div>
           <hr />
