@@ -17,6 +17,7 @@ class App extends Component {
       genIsSaved: false,
       education: [
         {
+          id: 0,
           school: "",
           title: "",
           date: ""
@@ -25,6 +26,7 @@ class App extends Component {
       eduIsSaved: false,
       experience: [
         {
+          id: 0,
           company: "",
           position: "",
           duties: "",
@@ -46,12 +48,34 @@ class App extends Component {
     this.setState({ genIsSaved: false });
   }
 
+  handleSaveEdu() {
+    this.setState({ eduIsSaved: true });
+  }
+
+  handleEditEdu() {
+    this.setState({ eduIsSaved: false });
+  }
+
   handleChange = (e) => {
     this.setState({
       ...this.state,
       [e.target.name]: e.target.value,
     });
   };
+
+  handleEduChange = (e) => {
+    e.preventDefault();
+    const newEdu = {
+      id: this.state.education.length,
+      school: e.target.form.elements.school.value,
+      title: e.target.form.elements.title.value,
+      date: e.target.form.elements.date.value
+    }
+    this.setState({
+      education: [...this.state.education, newEdu]
+    });
+  };
+
 
   render() {
     return (
@@ -68,7 +92,12 @@ class App extends Component {
           </div>
           <hr />
           <div id="education">
-            <EduInfo {...this.state} />
+            <EduInfo 
+              {...this.state}
+              handleEduChange={this.handleEduChange}
+              handleSaveEdu={this.handleSaveEdu}
+              handleEditEdu={this.handleEditEdu}
+            />
           </div>
           <hr />
           <div id="experience">
