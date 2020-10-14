@@ -1,80 +1,79 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser, faAddressCard, faEnvelope, faCheck, faPhone } from '@fortawesome/free-solid-svg-icons';
-import SaveButton from './SaveButton';
+import { faUser, faAddressCard, faEnvelope, faCheck, faPhone, faPen } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faUser, faAddressCard, faPhone, faEnvelope, faCheck)
+library.add(faUser, faAddressCard, faPhone, faEnvelope, faCheck, faPen)
 
-class GenInfo extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleName = this.handleName.bind(this);
-        this.handleAddress = this.handleAddress.bind(this);
-        this.handlePhone = this.handlePhone.bind(this);
-        this.handleEmail = this.handleEmail.bind(this);
+const GenInfo = props => {
 
-    };
+    function SaveButton() {
+        return (
+            <button className="btn btn-success btn-block w-auto mt-3 mx-auto" onClick={props.handleSaveGen}>
+                <FontAwesomeIcon icon={faCheck} className="mr-1" />Save General Info
+            </button>
+        );
+    }
 
-    
+    function EditButton() {
+        return (
+            <button className="btn btn-info btn-block w-auto mt-3 mx-auto" onClick={props.handleEditGen}>
+                <FontAwesomeIcon icon={faPen} className="mr-1" />Edit General Info
+            </button>
+        );
+    }
 
-    handleName = (e) => {
-        this.setState({
-          name: e.target.name,
-        });
-    };
-
-    handleAddress = (e) => {
-        this.setState({
-          address: e.target.address,
-        });
-    };
-
-    handlePhone = (e) => {
-        this.setState({
-          phone: e.target.phone,
-        });
-    };
-
-    handleEmail = (e) => {
-        this.setState({
-          email: e.target.email,
-        });
-    };
-
-    saveGen = (e) => {
-        this.setState({
-            genIsSaved: true,
-        });
-    };
-
-    editGen = (e) => {
-        this.setState({
-            genIsSaved: false,
-        });
-    };
-
-    
-
-    render() {
+    const isSaved = props.genIsSaved;
+    let name = <h3> {props.name} </h3>;
+    let address = <h6> {props.address} </h6>;
+    let phone = <h6> {props.phone} </h6>;
+    let email = <h6> {props.email} </h6>;
+    let button;
+    if (isSaved) {
+        button = <EditButton />;
+        return (
+            //change this to user input info from this.state
+            <div>
+                {name}
+                {address}
+                {phone}
+                {email}
+                {button}
+            </div>
+        );
+    } else {
+        button = <SaveButton />;
         return (
             <div>
                 <div className="form-group">
                     <label htmlFor="nameInput"><FontAwesomeIcon icon={faUser} className="mr-1" />Name</label>
-                    <input type="text" id="nameInput" className="form-control form-control-sm" />
+                    <input 
+                        type="text" 
+                        id="nameInput" 
+                        className="form-control form-control-sm" 
+                        onChange={props.handleName}
+                        value={props.name}
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="addressInput"><FontAwesomeIcon icon={faAddressCard} className="mr-1" />Address</label>
-                    <input type="text" id="addressInput" className="form-control form-control-sm" />
+                    <input type="text" id="addressInput" className="form-control form-control-sm"
+                        onChange={props.handleAddress}
+                        value={props.address}
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="phoneInput"><FontAwesomeIcon icon={faPhone} className="mr-1" />Phone Number</label>
-                    <input type="text" id="phoneInput" className="form-control form-control-sm" />
+                    <input type="text" id="phoneInput" className="form-control form-control-sm"
+                        onChange={props.handlePhone}
+                        value={props.phone} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="emailInput"><FontAwesomeIcon icon={faEnvelope} className="mr-1" />Email</label>
-                    <input type="text" id="emailInput" className="form-control form-control-sm" />
-                    <SaveButton />
+                    <input type="text" id="emailInput" className="form-control form-control-sm"
+                        onChange={props.handleEmail}
+                        value={props.email} />
+                    {button}
                 </div>
             </div>
         );

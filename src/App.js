@@ -33,32 +33,69 @@ class App extends Component {
       ],
       expIsSaved: false,
     };
+    this.handleSaveGen = this.handleSaveGen.bind(this);
+    this.handleEditGen = this.handleEditGen.bind(this);
     this.handleName = this.handleName.bind(this);
+    this.handleAddress = this.handleAddress.bind(this);
+    this.handlePhone = this.handlePhone.bind(this);
+    this.handleEmail = this.handleEmail.bind(this);
+  }
+
+  handleSaveGen() {
+    this.setState({ genIsSaved: true });
+  }
+
+  handleEditGen() {
+    this.setState({ genIsSaved: false });
   }
 
   handleName = (e) => {
     this.setState({
-      name: e.target.name,
+      name: e.target.value,
+    });
+  };
+
+  handleAddress = (e) => {
+    this.setState({
+      address: e.target.value,
+    });
+  };
+
+  handlePhone = (e) => {
+    this.setState({
+      phone: e.target.value,
+    });
+  };
+
+  handleEmail = (e) => {
+    this.setState({
+      email: e.target.value,
     });
   };
 
   render() {
-    //const { key, value } = this.state;
-
     return (
       <div className="col-9 mx-auto mt-5">
         <form className="formBorder border-primary rounded p-3 mb-5">
           <legend>CV Form</legend>
           <div id="generalInfo">
-            <GenInfo />
+            <GenInfo
+              {...this.state}
+              handleSaveGen={this.handleSaveGen}
+              handleEditGen={this.handleEditGen}
+              handleName={this.handleName}
+              handleAddress={this.handleAddress}
+              handlePhone={this.handlePhone}
+              handleEmail={this.handleEmail}
+            />
           </div>
           <hr />
           <div id="education">
-            <EduInfo />
+            <EduInfo {...this.state} />
           </div>
           <hr />
           <div id="experience">
-            <ExpInfo />
+            <ExpInfo {...this.state} />
           </div>
         </form>
       </div>

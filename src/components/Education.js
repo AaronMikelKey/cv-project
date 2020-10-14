@@ -9,7 +9,6 @@ library.add( faGraduationCap, faPlus, faCheck )
 
 const EduInfo = (props) => {
 
-  const { userInput } = props;
   return (
     <div>
       <span><FontAwesomeIcon icon={faGraduationCap} className="mr-1" />Education</span>

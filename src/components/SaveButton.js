@@ -7,7 +7,7 @@ library.add(faPen, faCheck)
 
 function SaveButton(props) {
     return (
-        <button className="btn btn-success btn-block w-auto mt-3 mx-auto" onClick={props.onClick}>
+        <button className="btn btn-success btn-block w-auto mt-3 mx-auto" >
             <FontAwesomeIcon icon={faCheck} className="mr-1" />Save General Info
         </button>
     );
@@ -15,47 +15,40 @@ function SaveButton(props) {
 
 function EditButton(props) {
     return (
-        <button className="btn btn-info btn-block w-auto mt-3 mx-auto" onClick={props.onClick}>
+        <button className="btn btn-info btn-block w-auto mt-3 mx-auto" >
             <FontAwesomeIcon icon={faPen} className="mr-1" />Edit General Info
         </button>
     );
 }
 
 
-class SaveControl extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleSaveGen = this.handleSaveGen.bind(this);
-        this.handleEditGen = this.handleEditGen.bind(this);
-        this.state = { genIsSaved: false };
-    }
-
+const SaveControl = props => {
+/*
     handleSaveGen() {
         this.setState({ genIsSaved: true });
-    }
-
-    handleEditGen() {
+        console.log("Saved");
+      }
+    
+      handleEditGen() {
         this.setState({ genIsSaved: false });
-    }
-
-    render() {
-        const isSaved = this.state.genIsSaved;
-        let button;
-        if (isSaved) {
-            button = <EditButton onClick={this.handleEditGen} />;
-            return (
-                <div>
-                    { button}
-                </div>
-            )
-        } else {
-            button = <SaveButton onClick={this.handleSaveGen} />;
-            return (
-                <div>
-                    { button}
-                </div>
-            )
-        }
+        console.log("Edit")
+      } */
+    const isSaved = props.genIsSaved;
+    let button;
+    if (isSaved) {
+        button = <EditButton />;
+        return (
+            <div>
+                { button }
+            </div>
+        )
+    } else {
+        button = <SaveButton onClick = {props.handleSaveGen}/>;
+        return (
+            <div>
+                { button }
+            </div>
+        )
     }
 }
 

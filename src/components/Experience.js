@@ -7,7 +7,6 @@ library.add(faPlus, faCheck, faBuilding)
 
 const ExpInfo = (props) => {
 
-  const { userInput } = props;
   return (
     <div>
       <div> <FontAwesomeIcon icon={faBuilding} className="mr-1" />Experience </div>
