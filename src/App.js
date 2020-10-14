@@ -24,16 +24,15 @@ class App extends Component {
         },
       ],
       eduIsSaved: false,
+      expIsSaved: false,
       experience: [
         {
           id: 0,
           company: "",
           position: "",
-          duties: "",
-          date: ""
+          years: ""
         }
       ],
-      expIsSaved: false,
     };
     this.handleSaveGen = this.handleSaveGen.bind(this);
     this.handleEditGen = this.handleEditGen.bind(this);
@@ -41,6 +40,9 @@ class App extends Component {
     this.handleEduChange = this.handleEduChange.bind(this);
     this.handleSaveEdu = this.handleSaveEdu.bind(this);
     this.handleEditEdu = this.handleEditEdu.bind(this);
+    this.handleExpChange = this.handleExpChange.bind(this);
+    this.handleSaveExp = this.handleSaveExp.bind(this);
+    this.handleEditExp = this.handleEditExp.bind(this);
   }
 
   handleSaveGen() {
@@ -58,6 +60,14 @@ class App extends Component {
     });
   };
 
+  handleEditEdu = (e) => {
+    e.preventDefault();
+    this.setState({
+      eduIsSaved: false
+    });
+    console.log(this.state.eduIsSaved)
+  };
+
   handleEduChange = (e) => {
     e.preventDefault();
     const newEdu = {
@@ -69,6 +79,7 @@ class App extends Component {
     this.setState({
       education: [...this.state.education, newEdu]
     });
+    console.log(this.state.education)
   };
   handleSaveEdu = (e) => {
     e.preventDefault();
@@ -78,13 +89,39 @@ class App extends Component {
     this.setState({
       eduIsSaved: true
     });
+    console.log(this.state.eduIsSaved)
   };
 
-  handleEditEdu(e) {
+  handleExpChange = (e) => {
     e.preventDefault();
-    this.setState({ 
-      eduIsSaved: false
-     });
+    const newExp = {
+      id: this.state.experience.length,
+      company: e.target.form.elements.company.value,
+      position: e.target.form.elements.position.value,
+      years: e.target.form.elements.years.value
+    }
+    this.setState({
+      experience: [...this.state.experience, newExp]
+    });
+    console.log(this.state.experience)
+  };
+  handleSaveExp = (e) => {
+    e.preventDefault();
+    if (e.target.form.elements.years.value !== "") {
+      this.handleExpChange(e);
+    }
+    this.setState({
+      expIsSaved: true
+    });
+    console.log(this.state.expIsSaved);
+  };
+
+  handleEditExp = (e) => {
+    e.preventDefault();
+    this.setState({
+      expIsSaved: false
+    });
+    console.log(this.state.expIsSaved)
   };
 
 
@@ -112,7 +149,12 @@ class App extends Component {
           </div>
           <hr />
           <div id="experience">
-            <ExpInfo {...this.state} />
+            <ExpInfo 
+              {...this.state}
+              handleExpChange={this.handleExpChange}
+              handleSaveExp={this.handleSaveExp}
+              handleEditExp={this.handleEditExp}
+            />
           </div>
         </form>
       </div>
